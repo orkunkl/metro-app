@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package station;
+package metro;
 
 import "codec.proto";
 import "gogoproto/gogo.proto";
@@ -30,10 +30,31 @@ message Passenger {
   weave.Metadata metadata = 1;
   bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
   bytes address = 3 [(gogoproto.casttype) = "github.com/iov-one/weave.Address"];
+  int64 registered_at = 4 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
+}
+
+// ---------- EVENT -----------
+
+message TrainArriveStationEvent {
+  weave.Metadata metadata = 1;
+  bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
+  // pk of station
+  bytes station_key = 3 [(gogoproto.customname) = "StationKey"];
+  // pk of train
+  bytes train_key = 4 [(gogoproto.customname) = "TrainKey"];
+  int64 arrived_at = 5 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
 }
 
 // ---------- MESSAGES -----------
 
-message CreatePassengerMsg {
+message RegisterPassengerMsg {
   weave.Metadata metadata = 1;
+  // add passenger data as you wish
+
+}
+
+message TrainArriveStationEventMsg {
+  weave.Metadata metadata = 1;
+  // id of station
+  bytes station_key = 2 [(gogoproto.customname) = "StationKey"];
 }
