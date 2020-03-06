@@ -222,23 +222,31 @@
         
           
           <li>
-            <a href="#x%2fstation%2fcodec.proto">x/station/codec.proto</a>
+            <a href="#x%2fmetro%2fcodec.proto">x/metro/codec.proto</a>
             <ul>
               
                 <li>
-                  <a href="#station.CreatePassengerMsg"><span class="badge">M</span>CreatePassengerMsg</a>
+                  <a href="#metro.Passenger"><span class="badge">M</span>Passenger</a>
                 </li>
               
                 <li>
-                  <a href="#station.Passenger"><span class="badge">M</span>Passenger</a>
+                  <a href="#metro.RegisterPassengerMsg"><span class="badge">M</span>RegisterPassengerMsg</a>
                 </li>
               
                 <li>
-                  <a href="#station.Station"><span class="badge">M</span>Station</a>
+                  <a href="#metro.Station"><span class="badge">M</span>Station</a>
                 </li>
               
                 <li>
-                  <a href="#station.Train"><span class="badge">M</span>Train</a>
+                  <a href="#metro.Train"><span class="badge">M</span>Train</a>
+                </li>
+              
+                <li>
+                  <a href="#metro.TrainArriveStationEvent"><span class="badge">M</span>TrainArriveStationEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#metro.TrainArriveStationEventMsg"><span class="badge">M</span>TrainArriveStationEventMsg</a>
                 </li>
               
               
@@ -681,35 +689,12 @@ Could be nil if there is not a time of deletion, or in future </p></td>
     
       
       <div class="file-heading">
-        <h2 id="x/station/codec.proto">x/station/codec.proto</h2><a href="#title">Top</a>
+        <h2 id="x/metro/codec.proto">x/metro/codec.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="station.CreatePassengerMsg">CreatePassengerMsg</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>metadata</td>
-                  <td><a href="#weave.Metadata">weave.Metadata</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-        
-
-        
-      
-        <h3 id="station.Passenger">Passenger</h3>
+        <h3 id="metro.Passenger">Passenger</h3>
         <p></p>
 
         
@@ -740,13 +725,43 @@ Could be nil if there is not a time of deletion, or in future </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>registered_at</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
         
 
         
       
-        <h3 id="station.Station">Station</h3>
+        <h3 id="metro.RegisterPassengerMsg">RegisterPassengerMsg</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#weave.Metadata">weave.Metadata</a></td>
+                  <td></td>
+                  <td><p>add passenger data as you wish </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="metro.Station">Station</h3>
         <p></p>
 
         
@@ -832,7 +847,7 @@ Could be nil if there is not a time of deletion, or in future </p></td>
 
         
       
-        <h3 id="station.Train">Train</h3>
+        <h3 id="metro.Train">Train</h3>
         <p></p>
 
         
@@ -858,6 +873,94 @@ Could be nil if there is not a time of deletion, or in future </p></td>
               
                 <tr>
                   <td>address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="metro.TrainArriveStationEvent">TrainArriveStationEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#weave.Metadata">weave.Metadata</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pk</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>station_key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>pk of station </p></td>
+                </tr>
+              
+                <tr>
+                  <td>train_key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>pk of train </p></td>
+                </tr>
+              
+                <tr>
+                  <td>arrived_at</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="metro.TrainArriveStationEventMsg">TrainArriveStationEventMsg</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#weave.Metadata">weave.Metadata</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>station_key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>id of station </p></td>
+                </tr>
+              
+                <tr>
+                  <td>train_key</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
                   <td><p> </p></td>

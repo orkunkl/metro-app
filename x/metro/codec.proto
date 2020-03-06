@@ -57,4 +57,5 @@ message TrainArriveStationEventMsg {
   weave.Metadata metadata = 1;
   // id of station
   bytes station_key = 2 [(gogoproto.customname) = "StationKey"];
+  bytes train_key = 3 [(gogoproto.customname) = "TrainKey"];
 }
