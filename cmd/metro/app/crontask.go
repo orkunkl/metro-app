@@ -1,7 +1,7 @@
-package blog
+package metro
 
 import (
-	"github.com/iov-one/blog-tutorial/x/blog"
+	"github.com/iov-one/blog-tutorial/x/metro"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/errors"
 )
@@ -23,11 +23,6 @@ func (taskMarshaler) MarshalTask(auth []weave.Condition, msg weave.Msg) ([]byte,
 	switch msg := msg.(type) {
 	default:
 		return nil, errors.Wrapf(errors.ErrType, "unsupported message type: %T", msg)
-
-	case *blog.DeleteArticleMsg:
-		t.Sum = &CronTask_BlogDeleteArticleMsg{
-			BlogDeleteArticleMsg: msg,
-		}
 	}
 
 	raw, err := t.Marshal()

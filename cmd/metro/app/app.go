@@ -1,7 +1,8 @@
-package blog
+package metro
 
 import (
 	"context"
+	"github.com/iov-one/blog-tutorial/x/metro"
 	"path/filepath"
 	"strings"
 
@@ -55,19 +56,18 @@ func Chain(authFn x.Authenticator, minFee coin.Coin) app.Decorators {
 // Router returns a default router
 func Router(authFn x.Authenticator, issuer weave.Address) *app.Router {
 	r := app.NewRouter()
-	scheduler := cron.NewScheduler(CronTaskMarshaler)
 
 	cash.RegisterRoutes(r, authFn, CashControl())
 	sigs.RegisterRoutes(r, authFn)
 	multisig.RegisterRoutes(r, authFn)
 	migration.RegisterRoutes(r, authFn)
 	validators.RegisterRoutes(r, authFn)
-	blog.RegisterRoutes(r, authFn, scheduler)
+	metro.RegisterRoutes(r, authFn)
 	return r
 }
 
 // QueryRouter returns a default query router,
-// allowing access to "/blog", "/auth", "/contracts", "/wallets", "/validators" and "/"
+// allowing access to "/metro", "/auth", "/contracts", "/wallets", "/validators" and "/"
 func QueryRouter() weave.QueryRouter {
 	r := weave.NewQueryRouter()
 	r.RegisterAll(
@@ -77,7 +77,7 @@ func QueryRouter() weave.QueryRouter {
 		migration.RegisterQuery,
 		orm.RegisterQuery,
 		validators.RegisterQuery,
-		blog.RegisterQuery,
+		metro.RegisterQuery,
 	)
 	return r
 }
@@ -96,11 +96,6 @@ func Stack(issuer weave.Address, minFee coin.Coin) weave.Handler {
 // fee).
 func CronStack() weave.Handler {
 	rt := app.NewRouter()
-
-	authFn := cron.Authenticator{}
-
-	// Cron is using custom router as not the same handlers are registered.
-	blog.RegisterCronRoutes(rt, authFn)
 
 	decorators := app.ChainDecorators(
 		utils.NewLogging(),

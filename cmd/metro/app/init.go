@@ -1,4 +1,4 @@
-package blog
+package metro
 
 import (
 	"context"
@@ -24,7 +24,7 @@ import (
 // account, to use for dev mode
 func GenInitOptions(args []string) (json.RawMessage, error) {
 	// Your coins ticker code
-	ticker := "BLOG"
+	ticker := "METRO"
 	if len(args) > 0 {
 		ticker = args[0]
 		if !coin.IsCC(ticker) {
@@ -80,7 +80,7 @@ func GenInitOptions(args []string) (json.RawMessage, error) {
 		},
 		"initialize_schema": []dict{
 			{"pkg": "migration", "ver": 1},
-			// TODO add blog when migration is implemented
+			{"pkg": "metro", "ver": 1},
 			{"pkg": "cash", "ver": 1},
 			{"pkg": "sigs", "ver": 1},
 			{"pkg": "multisig", "ver": 1},

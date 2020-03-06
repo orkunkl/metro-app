@@ -1,4 +1,4 @@
-package blog
+package metro
 
 import (
 	"github.com/iov-one/weave"

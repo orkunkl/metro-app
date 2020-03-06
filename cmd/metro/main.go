@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 
 	. "github.com/iov-one/blog-tutorial"
-	blog "github.com/iov-one/blog-tutorial/cmd/blog/app"
+	metro "github.com/iov-one/blog-tutorial/cmd/metro/app"
 	"github.com/iov-one/weave/commands"
 	"github.com/iov-one/weave/commands/server"
 	"github.com/tendermint/tendermint/libs/log"
@@ -19,7 +19,7 @@ var (
 )
 
 func init() {
-	defaultHome := filepath.Join(os.ExpandEnv("$HOME"), ".blog")
+	defaultHome := filepath.Join(os.ExpandEnv("$HOME"), ".metro")
 	varHome = flag.String(flagHome, defaultHome, "directory to store files under")
 
 	flag.CommandLine.Usage = helpMessage
@@ -60,15 +60,15 @@ func main() {
 	case "help":
 		helpMessage()
 	case "init":
-		err = server.InitCmd(blog.GenInitOptions, logger, *varHome, rest)
+		err = server.InitCmd(metro.GenInitOptions, logger, *varHome, rest)
 	case "start":
-		err = server.StartCmd(blog.GenerateApp, logger, *varHome, rest)
+		err = server.StartCmd(metro.GenerateApp, logger, *varHome, rest)
 	case "getblock":
 		err = server.GetBlockCmd(rest)
 	case "retry":
-		err = server.RetryCmd(blog.InlineApp, logger, *varHome, rest)
+		err = server.RetryCmd(metro.InlineApp, logger, *varHome, rest)
 	case "testgen":
-		err = commands.TestGenCmd(blog.Examples(), rest)
+		err = commands.TestGenCmd(metro.Examples(), rest)
 	case "version":
 		fmt.Println(Version)
 	default:

@@ -1,7 +1,7 @@
 package client
 
 import (
-	blog "github.com/iov-one/blog-tutorial/cmd/blog/app"
+	blog "github.com/iov-one/blog-tutorial/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/coin"
 	"github.com/iov-one/weave/crypto"
