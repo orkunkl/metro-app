@@ -1,7 +1,6 @@
 package metro
 
 import (
-	"github.com/iov-one/blog-tutorial/x/metro"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/errors"
 )

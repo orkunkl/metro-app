@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	packageName               = "metro"
+	packageName = "metro"
 )
 
 // RegisterQuery registers buckets for querying.
@@ -26,7 +26,7 @@ func RegisterRoutes(r weave.Registry, auth x.Authenticator) {
 // ------------------- RegisterPassengerHandler -------------------
 
 // RegisterPassengerHandler will handle RegisterPassengerMSg
-type RegisterPassengerHandler  struct {
+type RegisterPassengerHandler struct {
 	auth x.Authenticator
 	b    orm.SerialModelBucket
 }
@@ -56,7 +56,7 @@ func (h RegisterPassengerHandler) validate(ctx weave.Context, store weave.KVStor
 	now := weave.AsUnixTime(blockTime)
 
 	p := &Passenger{
-		Metadata:      &weave.Metadata{Schema: 1},
+		Metadata:     &weave.Metadata{Schema: 1},
 		Address:      x.AnySigner(ctx, h.auth).Address(),
 		RegisteredAt: now,
 	}
@@ -159,4 +159,3 @@ func (h TrainArriveStationEventHandler) Deliver(ctx weave.Context, store weave.K
 	// Returns generated user PrimaryKey as response
 	return &weave.DeliverResult{Data: tae.PrimaryKey}, nil
 }
-

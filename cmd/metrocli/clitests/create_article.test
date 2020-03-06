@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+metrocli create-article -blog_key 1 -title "test article" -content "test content" | metrocli view

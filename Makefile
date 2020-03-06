@@ -3,7 +3,7 @@
 # make sure we turn on go modules
 export GO111MODULE := on
 
-TOOLS := cmd/blog cmd/blogcli
+TOOLS := cmd/metro cmd/metrocli
 
 # MODE=count records heat map in test coverage
 # MODE=set just records which lines were hit by one test

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+metrocli cancel-delete-article-task -article_key 123 | metrocli view

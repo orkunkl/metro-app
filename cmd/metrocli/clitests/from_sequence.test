@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+metrocli from-sequence 0000000000000001
+metrocli from-sequence 0000000000000033
+metrocli from-sequence 0000000000000065
+metrocli from-sequence 0000000000000097
+metrocli from-sequence 00000000000000c9
+metrocli from-sequence 00000000000000fb
+metrocli from-sequence 000000000000012d
+metrocli from-sequence 000000000000015f
+metrocli from-sequence 0000000000000191
+metrocli from-sequence 00000000000001c3
+metrocli from-sequence 00000000000001f5
+metrocli from-sequence 0000000000000227
+metrocli from-sequence 0000000000000259
+metrocli from-sequence 000000000000028b
+metrocli from-sequence 00000000000002bd
+metrocli from-sequence 00000000000002ef
+metrocli from-sequence 0000000000000321
+
+# Multiple sequences input is allowed as well.
+metrocli from-sequence 0000000000000353 0000000000000385 00000000000003b7

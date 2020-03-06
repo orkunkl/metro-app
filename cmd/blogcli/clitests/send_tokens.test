@@ -1,9 +1,0 @@
-#!/bin/sh
-
-set -e
-
-blogcli send-tokens \
-	-src "seq:test/blog/1" \
-	-dst "seq:test/blog/2" \
-	-amount "4 BLOG" \
-	-memo "blogcli test" | blogcli view

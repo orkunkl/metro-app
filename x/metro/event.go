@@ -23,4 +23,3 @@ func (m *TrainArriveStationEvent) Validate() error {
 	// validate data
 	return errs
 }
-

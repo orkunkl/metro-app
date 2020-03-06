@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+metrocli send-tokens \
+	-src "seq:test/blog/1" \
+	-dst "seq:test/blog/2" \
+	-amount "4 BLOG" \
+	-memo "metrocli test" | metrocli view

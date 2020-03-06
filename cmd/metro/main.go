@@ -8,7 +8,6 @@ import (
 
 	. "github.com/iov-one/blog-tutorial"
 	metro "github.com/iov-one/blog-tutorial/cmd/metro/app"
-	"github.com/iov-one/weave/commands"
 	"github.com/iov-one/weave/commands/server"
 	"github.com/tendermint/tendermint/libs/log"
 )
@@ -67,8 +66,6 @@ func main() {
 		err = server.GetBlockCmd(rest)
 	case "retry":
 		err = server.RetryCmd(metro.InlineApp, logger, *varHome, rest)
-	case "testgen":
-		err = commands.TestGenCmd(metro.Examples(), rest)
 	case "version":
 		fmt.Println(Version)
 	default:

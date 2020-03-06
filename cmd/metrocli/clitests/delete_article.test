@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+metrocli delete-article -article_key 123456 | metrocli view
