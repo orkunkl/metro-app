@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package blog;
+
+import "codec.proto";
+import "gogoproto/gogo.proto";
+
+// ---------- STATE -----------
+
+message User {
+  weave.Metadata metadata = 1;
+  // PrimaryKey is users identifier
+  bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
+  // Username is user's alias
+  string username = 3;
+  // Bio is user information
+  string bio = 4;
+  // RegisteredAt defines registration time of the user
+  int64 registered_at = 5 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
+}
+
+message Blog {
+  weave.Metadata metadata = 1;
+  // PrimaryKey is blog's identifier
+  bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
+  // Owner is the owner address of the blog
+  bytes owner = 3 [(gogoproto.casttype) = "github.com/iov-one/weave.Address"];
+  // Title is title of the blog
+  string title = 4;
+  // Description is description section of the blog
+  string description = 5;
+  // CreatedAt defines creation time of the blog
+  int64 created_at = 6 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
+}
+
+message Article {
+  weave.Metadata metadata = 1;
+  // PrimaryKey is article's identifier
+  bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
+  // BlogKey identifies blog that article is posted to
+  bytes blog_key = 3 [(gogoproto.customname) = "BlogKey"];
+  // Owner is the owner address of the blog
+  bytes owner = 4 [(gogoproto.casttype) = "github.com/iov-one/weave.Address"];
+  // Title is title of the article
+  string title = 5;
+  // Content is content of the blog
+  string content = 6;
+  // CreatedAt defines creation time of the article
+  int64 created_at = 9 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
+  // DeleteAt defines deletion time of the article.
+  // Could be nil if there is not a time of deletion
+  int64 delete_at = 10 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
+  // DeleteTaskID holds an ID of a tasks scheduled to delete this article.
+  // This value can be empty if no deletion task was scheduled.
+  bytes delete_task_id = 11 [(gogoproto.customname) = "DeleteTaskID"];
+}
+
+// ---------- MESSAGES -----------
+
+message CreateUserMsg {
+  weave.Metadata metadata = 1;
+  // Username is user's alias
+  string username = 2;
+  // Bio is user information
+  string bio = 3;
+}
+
+message CreateBlogMsg {
+  weave.Metadata metadata = 1;
+  // Title is title of the blog
+  string title = 2;
+  // Description is description section of the blog
+  string description = 3;
+}
+
+message ChangeBlogOwnerMsg {
+  weave.Metadata metadata = 1;
+  // BlogKey is the blog's primary key that is desired to change owner
+  bytes blog_key = 2 [(gogoproto.customname) = "BlogKey"];
+  // Address of the new owner
+  bytes new_owner = 3 [(gogoproto.casttype) = "github.com/iov-one/weave.Address"];
+}
+
+message CreateArticleMsg {
+  weave.Metadata metadata = 1;
+  // BlogKey identifies blog that article is posted to
+  bytes blog_key = 2 [(gogoproto.customname) = "BlogKey"];
+  // Title is title of the article
+  string title = 3;
+  // Content is content of the blog
+  string content = 4;
+  // DeleteAt defines deletion time of the article.
+  // Could be nil if there is not a time of deletion, or in future
+  int64 delete_at = 5 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
+}
+
+// DeleteArticleMsg message deletes the the article instantly
+message DeleteArticleMsg {
+  weave.Metadata metadata = 1;
+  // ArticleKey is the identifier of the article that is desired to be deleted
+  bytes article_key = 2 [(gogoproto.customname) = "ArticleKey"];
+}
+
+// CancelDeleteArticleTaskMsg message cancels scheduled article deletion
+message CancelDeleteArticleTaskMsg {
+  weave.Metadata metadata = 1;
+  // ArticleKey is the identifier of the article
+  bytes article_key = 2 [(gogoproto.customname) = "ArticleKey"];
+}

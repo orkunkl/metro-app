@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+blogcli cancel-delete-article-task -article_key 123 | blogcli view
