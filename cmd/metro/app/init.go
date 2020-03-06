@@ -25,7 +25,7 @@ import (
 // account, to use for dev mode
 func GenInitOptions(args []string) (json.RawMessage, error) {
 	// Your coins ticker code
-	ticker := "METRO"
+	ticker := "METR"
 	if len(args) > 0 {
 		ticker = args[0]
 		if !coin.IsCC(ticker) {
