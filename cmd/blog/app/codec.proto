@@ -8,6 +8,7 @@ import "github.com/iov-one/weave/x/multisig/codec.proto";
 import "github.com/iov-one/weave/x/sigs/codec.proto";
 import "github.com/iov-one/weave/x/validators/codec.proto";
 import "gogoproto/gogo.proto";
+import "x/metro/codec.proto";
 
 // Tx contains the message
 // When extending Tx, follow the rules:
@@ -35,6 +36,8 @@ message Tx {
     validators.ApplyDiffMsg validators_apply_diff_msg = 58;
     ExecuteBatchMsg execute_batch_msg = 60;
     migration.UpgradeSchemaMsg migration_upgrade_schema_msg = 69;
+    metro.RegisterPassengerMsg metro_register_passenger_msg = 70;
+    metro.TrainArriveStationEventMsg metro_train_arrive_station_event_msg = 71;
   }
 }
 
