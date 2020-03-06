@@ -14,6 +14,9 @@ const (
 // RegisterQuery registers buckets for querying.
 func RegisterQuery(qr weave.QueryRouter) {
 	NewStationBucket().Register("stations", qr)
+	NewTrainBucket().Register("trains", qr)
+	NewPassengerBucket().Register("passengers", qr)
+	NewTrainArriveStationEventBucket().Register("tr-arrival", qr)
 }
 
 // RegisterRoutes registers handlers for message processing.
@@ -58,6 +61,7 @@ func (h RegisterPassengerHandler) validate(ctx weave.Context, store weave.KVStor
 	p := &Passenger{
 		Metadata:     &weave.Metadata{Schema: 1},
 		Address:      x.AnySigner(ctx, h.auth).Address(),
+		Name:         msg.Name,
 		RegisteredAt: now,
 	}
 

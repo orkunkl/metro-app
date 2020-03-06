@@ -12,12 +12,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/orkunkl/metro-app/cmd/metro/client"
-	"github.com/orkunkl/metro-app/x/metro"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/orm"
 	"github.com/iov-one/weave/x/cash"
 	"github.com/iov-one/weave/x/multisig"
+	"github.com/orkunkl/metro-app/cmd/metro/client"
+	"github.com/orkunkl/metro-app/x/metro"
 )
 
 func cmdQuery(input io.Reader, output io.Writer, args []string) error {
@@ -105,17 +105,17 @@ var queries = map[string]struct {
 }{
 	"/trains": {
 		newObj: func() model { return &metro.Train{} },
-		decKey: sequenceKey,
+		decKey: rawKey,
 		encID:  numericID,
 	},
 	"/passengers": {
 		newObj: func() model { return &metro.Passenger{} },
-		decKey: sequenceKey,
+		decKey: rawKey,
 		encID:  numericID,
 	},
-	"/events/arrive": {
+	"/tr-arrival": {
 		newObj: func() model { return &metro.TrainArriveStationEvent{} },
-		decKey: sequenceKey,
+		decKey: rawKey,
 		encID:  numericID,
 	},
 	"/wallets": {

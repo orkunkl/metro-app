@@ -6,7 +6,6 @@ import (
 	"os"
 	"testing"
 
-	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	weaveClient "github.com/iov-one/weave/client"
 	"github.com/iov-one/weave/coin"
@@ -14,6 +13,7 @@ import (
 	"github.com/iov-one/weave/crypto"
 	"github.com/iov-one/weave/migration"
 	"github.com/iov-one/weave/x/cash"
+	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	abci "github.com/tendermint/tendermint/abci/types"
 	cfg "github.com/tendermint/tendermint/config"
 	"github.com/tendermint/tendermint/libs/log"

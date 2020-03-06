@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/orkunkl/metro-app/cmd/metro/client"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/x/batch"
+	"github.com/orkunkl/metro-app/cmd/metro/client"
 )
 
 func cmdSubmitTransaction(input io.Reader, output io.Writer, args []string) error {

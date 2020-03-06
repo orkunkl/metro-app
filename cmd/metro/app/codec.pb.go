@@ -7,7 +7,6 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	metro "github.com/orkunkl/metro-app/x/metro"
 	github_com_iov_one_weave "github.com/iov-one/weave"
 	migration "github.com/iov-one/weave/migration"
 	cash "github.com/iov-one/weave/x/cash"
@@ -15,6 +14,7 @@ import (
 	multisig "github.com/iov-one/weave/x/multisig"
 	sigs "github.com/iov-one/weave/x/sigs"
 	validators "github.com/iov-one/weave/x/validators"
+	metro "github.com/orkunkl/metro-app/x/metro"
 	io "io"
 	math "math"
 )

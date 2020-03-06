@@ -31,7 +31,7 @@ cat unsigned_tx.bin \
 `with-fee` will query the proper fee for the given transaction (anti-spam fee plus product fee),
 unless you specify a manual amount as override.
 
-`sign` will sign with a private key located in `$HOME/.blog.priv.key` unless you specify a different
+`sign` will sign with a private key located in `$HOME/.metro.priv.key` unless you specify a different
 location. It will calculate the address of that key and query the given chain for the proper nonce
 before signing.
 

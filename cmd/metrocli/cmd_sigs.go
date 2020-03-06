@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/orkunkl/metro-app/cmd/metro/client"
 	"github.com/iov-one/weave/crypto"
 	"github.com/iov-one/weave/x/sigs"
+	"github.com/orkunkl/metro-app/cmd/metro/client"
 )
 
 func cmdSignTransaction(
@@ -33,7 +33,7 @@ content.
 	var (
 		tmAddrFl = fl.String("tm", env("METROCLI_TM_ADDR", "https://BLOG.NETWORK.iov.one:443"),
 			"Tendermint node address. Use proper NETWORK name. You can use METROCLI_TM_ADDR environment variable to set it.")
-		keyPathFl = fl.String("key", env("BLOGCLI_PRIV_KEY", os.Getenv("HOME")+"/.blog.priv.key"),
+		keyPathFl = fl.String("key", env("BLOGCLI_PRIV_KEY", os.Getenv("HOME")+"/.metro.priv.key"),
 			"Path to the private key file that transaction should be signed with. You can use BLOGCLI_PRIV_KEY environment variable to set it.")
 	)
 	fl.Parse(args)

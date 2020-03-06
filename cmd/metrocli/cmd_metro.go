@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/iov-one/weave"
 	app "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/orkunkl/metro-app/x/metro"
-	"github.com/iov-one/weave"
 )
 
 func cmdRegisterPassenger(input io.Reader, output io.Writer, args []string) error {
@@ -19,10 +19,15 @@ Register a passenger.
 		fl.PrintDefaults()
 	}
 
+	var (
+		nameFl = fl.String("name", "", "Primary key of a station")
+	)
+
 	fl.Parse(args)
 
 	msg := metro.RegisterPassengerMsg{
 		Metadata: &weave.Metadata{Schema: 1},
+		Name:     *nameFl,
 	}
 
 	if err := msg.Validate(); err != nil {

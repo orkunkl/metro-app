@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"testing"
 
-	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/x/cash"
+	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 )
 
 func TestCmdTransactionView(t *testing.T) {

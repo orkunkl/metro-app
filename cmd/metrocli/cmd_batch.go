@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"io"
 
-	metro "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave/x/cash"
 	"github.com/iov-one/weave/x/multisig"
+	metro "github.com/orkunkl/metro-app/cmd/metro/app"
 )
 
 func cmdAsBatch(input io.Reader, output io.Writer, args []string) error {

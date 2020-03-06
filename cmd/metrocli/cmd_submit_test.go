@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"testing"
 
-	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/coin"
 	"github.com/iov-one/weave/weavetest"
 	"github.com/iov-one/weave/weavetest/assert"
 	"github.com/iov-one/weave/x/batch"
 	"github.com/iov-one/weave/x/cash"
+	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 )
 
 // TestCmdSubmitTxHappyPath will set fees, sign the tx, and submit it... ensuring the

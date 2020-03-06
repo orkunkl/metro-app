@@ -1,8 +1,6 @@
 package metro
 
 import (
-	"github.com/iov-one/weave/migration"
-
 	"github.com/iov-one/weave/orm"
 )
 
@@ -13,9 +11,9 @@ type StationBucket struct {
 // NewStationBucket returns a new station bucket
 func NewStationBucket() orm.SerialModelBucket {
 	b := &StationBucket{
-		orm.NewSerialModelBucket("stati", &Station{}),
+		orm.NewSerialModelBucket("station", &Station{}),
 	}
-	return migration.NewSerialModelBucket("station", &Station{}, b)
+	return b
 }
 
 type TrainBucket struct {
@@ -25,9 +23,9 @@ type TrainBucket struct {
 // NewTrainBucket returns a new train bucket
 func NewTrainBucket() orm.SerialModelBucket {
 	b := &TrainBucket{
-		orm.NewSerialModelBucket("trai", &Train{}),
+		orm.NewSerialModelBucket("train", &Train{}),
 	}
-	return migration.NewSerialModelBucket("train", &Train{}, b)
+	return b
 }
 
 type PassengerBucket struct {
@@ -39,7 +37,7 @@ func NewPassengerBucket() orm.SerialModelBucket {
 	b := &PassengerBucket{
 		orm.NewSerialModelBucket("pass", &Passenger{}),
 	}
-	return migration.NewSerialModelBucket("passngr", &Passenger{}, b)
+	return b
 }
 
 type TrainArriveStationEventBucket struct {
@@ -51,5 +49,5 @@ func NewTrainArriveStationEventBucket() orm.SerialModelBucket {
 	b := &TrainArriveStationEventBucket{
 		orm.NewSerialModelBucket("traiarr", &TrainArriveStationEvent{}),
 	}
-	return migration.NewSerialModelBucket("trainarr", &TrainArriveStationEvent{}, b)
+	return b
 }

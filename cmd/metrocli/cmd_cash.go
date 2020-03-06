@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"io"
 
-	app "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/coin"
 	"github.com/iov-one/weave/gconf"
 	"github.com/iov-one/weave/x/cash"
+	app "github.com/orkunkl/metro-app/cmd/metro/app"
 )
 
 func cmdSendTokens(input io.Reader, output io.Writer, args []string) error {
@@ -57,7 +57,7 @@ already has a fee set, overwrite it with a new value.
 	var (
 		payerFl  = flHex(fl, "payer", "", "Optional address of a payer. If not provided the main signer will be used.")
 		amountFl = flCoin(fl, "amount", "", "Fee value that should be attached to the transaction. If not provided, default minimal fee is used.")
-		tmAddrFl = fl.String("tm", env("BNSCLI_TM_ADDR", "https://bns.NETWORK.iov.one:443"),
+		tmAddrFl = fl.String("tm", env("METROCLI_TM_ADDR", "https://bns.NETWORK.iov.one:443"),
 			"Tendermint node address. Use proper NETWORK name. You can use BNSCLI_TM_ADDR environment variable to set it.")
 	)
 	fl.Parse(args)

@@ -68,17 +68,34 @@ func GenInitOptions(args []string) (json.RawMessage, error) {
 					},
 				},
 			},
-		},
-		"station": array{
 			dict{
-				"station":       "fahrettin altay",
-				"escalator":     14,
-				"elevator":      6,
-				"is_peron_ada":  false,
-				"ticket_office": 2,
-				"toll_gate_ent": 10,
-				"toll_gate_ex":  8,
-				"entrance_exit": 5,
+				"address": "2757546E62A962FD58C94672E47E138682B97FF2",
+				"//name": "faucet",
+				"coins": array{
+					dict{
+						"whole":  9999999,
+						"ticker": ticker,
+					},
+				},
+			},
+		},
+		"metro": dict{
+			"station": array{
+				dict{
+					"station":       "fahrettin altay",
+					"escalator":     14,
+					"elevator":      6,
+					"is_peron_ada":  false,
+					"ticket_office": 2,
+					"toll_gate_ent": 10,
+					"toll_gate_ex":  8,
+					"entrance_exit": 5,
+				},
+			},
+			"train": array{
+				dict{
+					"address": cond1.Address().String(),
+				},
 			},
 		},
 		"conf": dict{

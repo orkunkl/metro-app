@@ -31,6 +31,7 @@ message Passenger {
   bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
   bytes address = 3 [(gogoproto.casttype) = "github.com/iov-one/weave.Address"];
   int64 registered_at = 4 [(gogoproto.casttype) = "github.com/iov-one/weave.UnixTime"];
+  string name = 5;
 }
 
 // ---------- EVENT -----------
@@ -49,6 +50,7 @@ message TrainArriveStationEvent {
 
 message RegisterPassengerMsg {
   weave.Metadata metadata = 1;
+  string name = 2;
   // add passenger data as you wish
 
 }

@@ -1,13 +1,13 @@
 package client
 
 import (
-	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/coin"
 	"github.com/iov-one/weave/crypto"
 	"github.com/iov-one/weave/x/cash"
 	"github.com/iov-one/weave/x/sigs"
 	"github.com/iov-one/weave/x/validators"
+	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 )
 
 // Tx is all the interfaces we need rolled into one

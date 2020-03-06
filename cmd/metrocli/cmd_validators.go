@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/x/validators"
+	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 )
 
 func cmdSetValidators(input io.Reader, output io.Writer, args []string) error {

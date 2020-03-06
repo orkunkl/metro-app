@@ -12,9 +12,9 @@ import (
 	"strconv"
 	"strings"
 
-	metro "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/app"
+	metro "github.com/orkunkl/metro-app/cmd/metro/app"
 	abci "github.com/tendermint/tendermint/abci/types"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 )

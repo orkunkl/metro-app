@@ -10,7 +10,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	blogapp "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/app"
 	"github.com/iov-one/weave/coin"
@@ -18,6 +17,7 @@ import (
 	"github.com/iov-one/weave/weavetest/assert"
 	"github.com/iov-one/weave/x/cash"
 	"github.com/iov-one/weave/x/msgfee"
+	blogapp "github.com/orkunkl/metro-app/cmd/metro/app"
 )
 
 func TestCmdSendTokensHappyPath(t *testing.T) {
