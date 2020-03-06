@@ -17,9 +17,10 @@ func RegisterQuery(qr weave.QueryRouter) {
 }
 
 // RegisterRoutes registers handlers for message processing.
-func RegisterRoutes(r weave.Registry, auth x.Authenticator, scheduler weave.Scheduler) {
+func RegisterRoutes(r weave.Registry, auth x.Authenticator) {
 	//r = migration.SchemaMigratingRegistry(packageName, r)
 	r.Handle(&RegisterPassengerMsg{}, NewRegisterPassengerHandler(auth))
+	r.Handle(&TrainArriveStationEventMsg{}, NewTrainArriveStationEventHandler(auth))
 }
 
 // ------------------- RegisterPassengerHandler -------------------
