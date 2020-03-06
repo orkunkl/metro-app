@@ -2,7 +2,7 @@ package metro
 
 import (
 	"context"
-	"github.com/iov-one/blog-tutorial/x/metro"
+	"github.com/orkunkl/metro-app/x/metro"
 	"path/filepath"
 	"strings"
 

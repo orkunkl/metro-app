@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	blog "github.com/iov-one/blog-tutorial/cmd/metro/app"
+	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/x/validators"
 )

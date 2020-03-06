@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/iov-one/blog-tutorial/cmd/metro/client"
+	"github.com/orkunkl/metro-app/cmd/metro/client"
 	"github.com/iov-one/weave/crypto"
 	"github.com/iov-one/weave/x/sigs"
 )

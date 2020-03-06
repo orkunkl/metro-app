@@ -1,4 +1,4 @@
-module github.com/iov-one/blog-tutorial
+module github.com/orkunkl/metro-app
 
 require (
 	github.com/gogo/protobuf v1.2.1

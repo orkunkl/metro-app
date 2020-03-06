@@ -17,7 +17,7 @@ excludes:
 
 generate:
   go_options:
-    import_path: github.com/iov-one/blog-tutorial
+    import_path: github.com/orkunkl/metro-app
 
   plugins:
     - name: gogofaster

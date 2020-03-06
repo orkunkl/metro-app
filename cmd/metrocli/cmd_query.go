@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/iov-one/blog-tutorial/cmd/metro/client"
-	"github.com/iov-one/blog-tutorial/x/metro"
+	"github.com/orkunkl/metro-app/cmd/metro/client"
+	"github.com/orkunkl/metro-app/x/metro"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/orm"
 	"github.com/iov-one/weave/x/cash"

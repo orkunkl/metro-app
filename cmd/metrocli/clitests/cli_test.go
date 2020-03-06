@@ -79,7 +79,7 @@ func ensureBlogCLIBinary(t testing.TB) {
 You can install metrocli binary by running "make install" in
 weave main directory or by directly using Go install command:
 
-  $ go install github.com/iov-one/blog-tutorial/cmd/metrocli
+  $ go install github.com/orkunkl/metro-app/cmd/metrocli
 `)
 	}
 }

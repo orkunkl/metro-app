@@ -74,7 +74,7 @@ func (*Initializer) FromGenesis(opts weave.Options, params weave.GenesisParams, 
 	stations := NewStationBucket()
 	for i, d := range inputStation.Station {
 		station := Station{
-			Metadata:    &weave.Metadata{Schema: 1} ,
+			Metadata:     &weave.Metadata{Schema: 1},
 			Station:      d.Station,
 			Escalator:    d.Escalator,
 			Elevator:     d.Elevator,
@@ -92,14 +92,13 @@ func (*Initializer) FromGenesis(opts weave.Options, params weave.GenesisParams, 
 	trains := NewTrainBucket()
 	for i, d := range inputTrain.Train {
 		train := Train{
-			Metadata:   &weave.Metadata{Schema: 1} ,
-			Address:    d.Address,
+			Metadata: &weave.Metadata{Schema: 1},
+			Address:  d.Address,
 		}
 		if err := trains.Save(kv, &train); err != nil {
 			return errors.Wrapf(err, "cannot store %d train", i)
 		}
 	}
-
 
 	return nil
 }

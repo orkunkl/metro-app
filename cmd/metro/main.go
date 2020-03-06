@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	. "github.com/iov-one/blog-tutorial"
-	metro "github.com/iov-one/blog-tutorial/cmd/metro/app"
+	. "github.com/orkunkl/metro-app"
+	metro "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave/commands/server"
 	"github.com/tendermint/tendermint/libs/log"
 )

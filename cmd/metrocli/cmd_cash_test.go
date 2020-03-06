@@ -10,7 +10,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	blogapp "github.com/iov-one/blog-tutorial/cmd/metro/app"
+	blogapp "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	"github.com/iov-one/weave/app"
 	"github.com/iov-one/weave/coin"

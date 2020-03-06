@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	app "github.com/iov-one/blog-tutorial/cmd/metro/app"
-	"github.com/iov-one/blog-tutorial/x/metro"
+	app "github.com/orkunkl/metro-app/cmd/metro/app"
+	"github.com/orkunkl/metro-app/x/metro"
 	"github.com/iov-one/weave"
 )
 

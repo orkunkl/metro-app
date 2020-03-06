@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/iov-one/blog-tutorial/x/metro"
+	"github.com/orkunkl/metro-app/x/metro"
 	"path/filepath"
 
 	"github.com/iov-one/weave"
@@ -69,6 +69,18 @@ func GenInitOptions(args []string) (json.RawMessage, error) {
 				},
 			},
 		},
+		"station": array{
+			dict{
+				"station":       "fahrettin altay",
+				"escalator":     14,
+				"elevator":      6,
+				"is_peron_ada":  false,
+				"ticket_office": 2,
+				"toll_gate_ent": 10,
+				"toll_gate_ex":  8,
+				"entrance_exit": 5,
+			},
+		},
 		"conf": dict{
 			"cash": dict{
 				"collector_address": collectorAddr,
@@ -96,11 +108,11 @@ func GenerateApp(options *server.Options) (abci.Application, error) {
 	// db goes in a subdir, but "" -> "" for memdb
 	var dbPath string
 	if options.Home != "" {
-		dbPath = filepath.Join(options.Home, "blog.db")
+		dbPath = filepath.Join(options.Home, "metro.db")
 	}
 
 	stack := Stack(nil, options.MinFee)
-	application, err := Application("blog", stack, TxDecoder, dbPath, options.Debug)
+	application, err := Application("metro", stack, TxDecoder, dbPath, options.Debug)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +138,7 @@ func InlineApp(kv weave.CommitKVStore, logger log.Logger, debug bool) abci.Appli
 	minFee := coin.Coin{}
 	stack := Stack(nil, minFee)
 	ctx := context.Background()
-	store := app.NewStoreApp("blog", kv, QueryRouter(), ctx)
+	store := app.NewStoreApp("metro", kv, QueryRouter(), ctx)
 	base := app.NewBaseApp(store, TxDecoder, stack, nil, debug)
 	return DecorateApp(base, logger)
 }

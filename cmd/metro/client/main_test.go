@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	blog "github.com/iov-one/blog-tutorial/cmd/metro/app"
+	blog "github.com/orkunkl/metro-app/cmd/metro/app"
 	"github.com/iov-one/weave"
 	weaveClient "github.com/iov-one/weave/client"
 	"github.com/iov-one/weave/coin"
