@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"github.com/iov-one/blog-tutorial/x/metro"
 	"path/filepath"
 
 	"github.com/iov-one/weave"
@@ -114,6 +115,7 @@ func DecorateApp(application app.BaseApp, logger log.Logger) app.BaseApp {
 		&cash.Initializer{},
 		&multisig.Initializer{},
 		&validators.Initializer{},
+		&metro.Initializer{},
 	))
 	application.WithLogger(logger)
 	return application
