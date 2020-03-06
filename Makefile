@@ -22,19 +22,19 @@ WEAVEDIR=$(shell go list -m -f '{{.Dir}}' github.com/iov-one/weave)
 all: import-spec test lint install
 
 dist:
-	cd cmd/blog && $(MAKE) dist
+	cd cmd/metro && $(MAKE) dist
 
 install:
 	for ex in $(TOOLS); do cd $$ex && make install && cd -; done
 
 test:
-	@# blog binary is required by some tests. In order to not skip them, ensure blog binary is provided and in the latest version.
+	@# metro binary is required by some tests. In order to not skip them, ensure metro binary is provided and in the latest version.
 	go vet -mod=readonly ./...
 	go test -mod=readonly -race ./...
 
 lint:
 	@go mod vendor
-	docker run --rm -it -v $(shell pwd):/go/src/github.com/iov-one/blog-tutorial -w="/go/src/github.com/iov-one/blog-tutorial" golangci/golangci-lint:v1.17.1 golangci-lint run ./...
+	docker run --rm -it -v $(shell pwd):/go/src/github.com/iov-one/metro-tutorial -w="/go/src/github.com/iov-one/metro-tutorial" golangci/golangci-lint:v1.17.1 golangci-lint run ./...
 	@rm -rf vendor
 
 # Test fast
@@ -47,23 +47,6 @@ test-verbose:
 
 mod:
 	go mod tidy
-
-# TODO write github.com/iov-one/blog-tutorial/cmd/blog/client and scenarios, here when implemented \
-	go test -mod=readonly -covermode=$(MODE) \
-		-coverpkg=github.com/iov-one/weave/cmd/blog/app,\
-		-coverprofile=coverage/custonmd_scenarios.out \
-		github.com/iov-one/blog-tutorial/cmd/bnsd/scenarios
-cover:
-	@# TODO write github.com/iov-one/blog-tutorial/cmd/bnsd/client when implemented
-	@go test -mod=readonly -covermode=$(MODE) \
-		-coverpkg=github.com/iov-one/blog-tutorial/cmd/blog/app, \
-		-coverprofile=coverage/blogd_app.out \
-		github.com/iov-one/blog-tutorial/cmd/blog/app
-		cat coverage/*.out > coverage/coverage.txt
-	@go test -mod=readonly -covermode=$(MODE) \
-		-coverpkg=github.com/iov-one/blog-tutorial/cmd/blog/app,github.com/iov-one/blog-tutorial/cmd/blog/client \
-		-coverprofile=coverage/blogd_client.out \
-		github.com/iov-one/blog-tutorial/cmd/blog/client
 
 novendor:
 	@rm -rf ./vendor
@@ -87,7 +70,7 @@ import-spec:
 	@chmod -R +w spec
 
 inittm:
-	tendermint init --home ~/.blog
+	tendermint init --home ~/.metro
 
 runtm:
-	tendermint node --home ~/.blog > ~/.blog/tendermint.log &
+	tendermint node --home ~/.metro > ~/.metro/tendermint.log &
