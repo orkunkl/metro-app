@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package station;
+
+import "codec.proto";
+import "gogoproto/gogo.proto";
+
+// ---------- STATE -----------
+
+message Station {
+  weave.Metadata metadata = 1;
+  bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
+  string station = 3;
+  int64 escalator = 4;
+  int64 elevator = 5;
+  bool is_peron_ada = 6;
+  int64 ticket_office = 7;
+  int64 toll_gate_ent = 8;
+  int64 toll_gate_ex = 9;
+  int64 entrance_exit = 10;
+}
+
+message Train {
+  weave.Metadata metadata = 1;
+  bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
+  bytes address = 3 [(gogoproto.casttype) = "github.com/iov-one/weave.Address"];
+}
+
+message Passenger {
+  weave.Metadata metadata = 1;
+  bytes pk = 2 [(gogoproto.customname) = "PrimaryKey"];
+  bytes address = 3 [(gogoproto.casttype) = "github.com/iov-one/weave.Address"];
+}
+
+// ---------- MESSAGES -----------
+
+message CreatePassengerMsg {
+  weave.Metadata metadata = 1;
+}

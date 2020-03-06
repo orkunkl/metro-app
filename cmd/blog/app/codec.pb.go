@@ -7,8 +7,6 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	blog "github.com/iov-one/blog-tutorial/x/blog"
-	github_com_iov_one_weave "github.com/iov-one/weave"
 	migration "github.com/iov-one/weave/migration"
 	cash "github.com/iov-one/weave/x/cash"
 	multisig "github.com/iov-one/weave/x/multisig"
@@ -56,12 +54,6 @@ type Tx struct {
 	//	*Tx_ValidatorsApplyDiffMsg
 	//	*Tx_ExecuteBatchMsg
 	//	*Tx_MigrationUpgradeSchemaMsg
-	//	*Tx_BlogCreateUserMsg
-	//	*Tx_BlogCreateBlogMsg
-	//	*Tx_BlogChangeBlogOwnerMsg
-	//	*Tx_BlogCreateArticleMsg
-	//	*Tx_BlogDeleteArticleMsg
-	//	*Tx_BlogCancelDeleteArticleTaskMsg
 	Sum isTx_Sum `protobuf_oneof:"sum"`
 }
 
@@ -122,37 +114,13 @@ type Tx_ExecuteBatchMsg struct {
 type Tx_MigrationUpgradeSchemaMsg struct {
 	MigrationUpgradeSchemaMsg *migration.UpgradeSchemaMsg `protobuf:"bytes,69,opt,name=migration_upgrade_schema_msg,json=migrationUpgradeSchemaMsg,proto3,oneof"`
 }
-type Tx_BlogCreateUserMsg struct {
-	BlogCreateUserMsg *blog.CreateUserMsg `protobuf:"bytes,100,opt,name=blog_create_user_msg,json=blogCreateUserMsg,proto3,oneof"`
-}
-type Tx_BlogCreateBlogMsg struct {
-	BlogCreateBlogMsg *blog.CreateBlogMsg `protobuf:"bytes,101,opt,name=blog_create_blog_msg,json=blogCreateBlogMsg,proto3,oneof"`
-}
-type Tx_BlogChangeBlogOwnerMsg struct {
-	BlogChangeBlogOwnerMsg *blog.ChangeBlogOwnerMsg `protobuf:"bytes,102,opt,name=blog_change_blog_owner_msg,json=blogChangeBlogOwnerMsg,proto3,oneof"`
-}
-type Tx_BlogCreateArticleMsg struct {
-	BlogCreateArticleMsg *blog.CreateArticleMsg `protobuf:"bytes,103,opt,name=blog_create_article_msg,json=blogCreateArticleMsg,proto3,oneof"`
-}
-type Tx_BlogDeleteArticleMsg struct {
-	BlogDeleteArticleMsg *blog.DeleteArticleMsg `protobuf:"bytes,104,opt,name=blog_delete_article_msg,json=blogDeleteArticleMsg,proto3,oneof"`
-}
-type Tx_BlogCancelDeleteArticleTaskMsg struct {
-	BlogCancelDeleteArticleTaskMsg *blog.CancelDeleteArticleTaskMsg `protobuf:"bytes,105,opt,name=blog_cancel_delete_article_task_msg,json=blogCancelDeleteArticleTaskMsg,proto3,oneof"`
-}
 
-func (*Tx_CashSendMsg) isTx_Sum()                    {}
-func (*Tx_MultisigCreateMsg) isTx_Sum()              {}
-func (*Tx_MultisigUpdateMsg) isTx_Sum()              {}
-func (*Tx_ValidatorsApplyDiffMsg) isTx_Sum()         {}
-func (*Tx_ExecuteBatchMsg) isTx_Sum()                {}
-func (*Tx_MigrationUpgradeSchemaMsg) isTx_Sum()      {}
-func (*Tx_BlogCreateUserMsg) isTx_Sum()              {}
-func (*Tx_BlogCreateBlogMsg) isTx_Sum()              {}
-func (*Tx_BlogChangeBlogOwnerMsg) isTx_Sum()         {}
-func (*Tx_BlogCreateArticleMsg) isTx_Sum()           {}
-func (*Tx_BlogDeleteArticleMsg) isTx_Sum()           {}
-func (*Tx_BlogCancelDeleteArticleTaskMsg) isTx_Sum() {}
+func (*Tx_CashSendMsg) isTx_Sum()               {}
+func (*Tx_MultisigCreateMsg) isTx_Sum()         {}
+func (*Tx_MultisigUpdateMsg) isTx_Sum()         {}
+func (*Tx_ValidatorsApplyDiffMsg) isTx_Sum()    {}
+func (*Tx_ExecuteBatchMsg) isTx_Sum()           {}
+func (*Tx_MigrationUpgradeSchemaMsg) isTx_Sum() {}
 
 func (m *Tx) GetSum() isTx_Sum {
 	if m != nil {
@@ -224,48 +192,6 @@ func (m *Tx) GetMigrationUpgradeSchemaMsg() *migration.UpgradeSchemaMsg {
 	return nil
 }
 
-func (m *Tx) GetBlogCreateUserMsg() *blog.CreateUserMsg {
-	if x, ok := m.GetSum().(*Tx_BlogCreateUserMsg); ok {
-		return x.BlogCreateUserMsg
-	}
-	return nil
-}
-
-func (m *Tx) GetBlogCreateBlogMsg() *blog.CreateBlogMsg {
-	if x, ok := m.GetSum().(*Tx_BlogCreateBlogMsg); ok {
-		return x.BlogCreateBlogMsg
-	}
-	return nil
-}
-
-func (m *Tx) GetBlogChangeBlogOwnerMsg() *blog.ChangeBlogOwnerMsg {
-	if x, ok := m.GetSum().(*Tx_BlogChangeBlogOwnerMsg); ok {
-		return x.BlogChangeBlogOwnerMsg
-	}
-	return nil
-}
-
-func (m *Tx) GetBlogCreateArticleMsg() *blog.CreateArticleMsg {
-	if x, ok := m.GetSum().(*Tx_BlogCreateArticleMsg); ok {
-		return x.BlogCreateArticleMsg
-	}
-	return nil
-}
-
-func (m *Tx) GetBlogDeleteArticleMsg() *blog.DeleteArticleMsg {
-	if x, ok := m.GetSum().(*Tx_BlogDeleteArticleMsg); ok {
-		return x.BlogDeleteArticleMsg
-	}
-	return nil
-}
-
-func (m *Tx) GetBlogCancelDeleteArticleTaskMsg() *blog.CancelDeleteArticleTaskMsg {
-	if x, ok := m.GetSum().(*Tx_BlogCancelDeleteArticleTaskMsg); ok {
-		return x.BlogCancelDeleteArticleTaskMsg
-	}
-	return nil
-}
-
 // XXX_OneofFuncs is for the internal use of the proto package.
 func (*Tx) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
 	return _Tx_OneofMarshaler, _Tx_OneofUnmarshaler, _Tx_OneofSizer, []interface{}{
@@ -275,12 +201,6 @@ func (*Tx) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, fun
 		(*Tx_ValidatorsApplyDiffMsg)(nil),
 		(*Tx_ExecuteBatchMsg)(nil),
 		(*Tx_MigrationUpgradeSchemaMsg)(nil),
-		(*Tx_BlogCreateUserMsg)(nil),
-		(*Tx_BlogCreateBlogMsg)(nil),
-		(*Tx_BlogChangeBlogOwnerMsg)(nil),
-		(*Tx_BlogCreateArticleMsg)(nil),
-		(*Tx_BlogDeleteArticleMsg)(nil),
-		(*Tx_BlogCancelDeleteArticleTaskMsg)(nil),
 	}
 }
 
@@ -316,36 +236,6 @@ func _Tx_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
 	case *Tx_MigrationUpgradeSchemaMsg:
 		_ = b.EncodeVarint(69<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.MigrationUpgradeSchemaMsg); err != nil {
-			return err
-		}
-	case *Tx_BlogCreateUserMsg:
-		_ = b.EncodeVarint(100<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.BlogCreateUserMsg); err != nil {
-			return err
-		}
-	case *Tx_BlogCreateBlogMsg:
-		_ = b.EncodeVarint(101<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.BlogCreateBlogMsg); err != nil {
-			return err
-		}
-	case *Tx_BlogChangeBlogOwnerMsg:
-		_ = b.EncodeVarint(102<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.BlogChangeBlogOwnerMsg); err != nil {
-			return err
-		}
-	case *Tx_BlogCreateArticleMsg:
-		_ = b.EncodeVarint(103<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.BlogCreateArticleMsg); err != nil {
-			return err
-		}
-	case *Tx_BlogDeleteArticleMsg:
-		_ = b.EncodeVarint(104<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.BlogDeleteArticleMsg); err != nil {
-			return err
-		}
-	case *Tx_BlogCancelDeleteArticleTaskMsg:
-		_ = b.EncodeVarint(105<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.BlogCancelDeleteArticleTaskMsg); err != nil {
 			return err
 		}
 	case nil:
@@ -406,54 +296,6 @@ func _Tx_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bo
 		err := b.DecodeMessage(msg)
 		m.Sum = &Tx_MigrationUpgradeSchemaMsg{msg}
 		return true, err
-	case 100: // sum.blog_create_user_msg
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(blog.CreateUserMsg)
-		err := b.DecodeMessage(msg)
-		m.Sum = &Tx_BlogCreateUserMsg{msg}
-		return true, err
-	case 101: // sum.blog_create_blog_msg
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(blog.CreateBlogMsg)
-		err := b.DecodeMessage(msg)
-		m.Sum = &Tx_BlogCreateBlogMsg{msg}
-		return true, err
-	case 102: // sum.blog_change_blog_owner_msg
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(blog.ChangeBlogOwnerMsg)
-		err := b.DecodeMessage(msg)
-		m.Sum = &Tx_BlogChangeBlogOwnerMsg{msg}
-		return true, err
-	case 103: // sum.blog_create_article_msg
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(blog.CreateArticleMsg)
-		err := b.DecodeMessage(msg)
-		m.Sum = &Tx_BlogCreateArticleMsg{msg}
-		return true, err
-	case 104: // sum.blog_delete_article_msg
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(blog.DeleteArticleMsg)
-		err := b.DecodeMessage(msg)
-		m.Sum = &Tx_BlogDeleteArticleMsg{msg}
-		return true, err
-	case 105: // sum.blog_cancel_delete_article_task_msg
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(blog.CancelDeleteArticleTaskMsg)
-		err := b.DecodeMessage(msg)
-		m.Sum = &Tx_BlogCancelDeleteArticleTaskMsg{msg}
-		return true, err
 	default:
 		return false, nil
 	}
@@ -490,36 +332,6 @@ func _Tx_OneofSizer(msg proto.Message) (n int) {
 		n += s
 	case *Tx_MigrationUpgradeSchemaMsg:
 		s := proto.Size(x.MigrationUpgradeSchemaMsg)
-		n += 2 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *Tx_BlogCreateUserMsg:
-		s := proto.Size(x.BlogCreateUserMsg)
-		n += 2 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *Tx_BlogCreateBlogMsg:
-		s := proto.Size(x.BlogCreateBlogMsg)
-		n += 2 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *Tx_BlogChangeBlogOwnerMsg:
-		s := proto.Size(x.BlogChangeBlogOwnerMsg)
-		n += 2 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *Tx_BlogCreateArticleMsg:
-		s := proto.Size(x.BlogCreateArticleMsg)
-		n += 2 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *Tx_BlogDeleteArticleMsg:
-		s := proto.Size(x.BlogDeleteArticleMsg)
-		n += 2 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *Tx_BlogCancelDeleteArticleTaskMsg:
-		s := proto.Size(x.BlogCancelDeleteArticleTaskMsg)
 		n += 2 // tag and wire
 		n += proto.SizeVarint(uint64(s))
 		n += s
@@ -759,205 +571,48 @@ func _ExecuteBatchMsg_Union_OneofSizer(msg proto.Message) (n int) {
 	return n
 }
 
-// CronTask is a format used by the CronMarshaler to marshal and unmarshal cron
-// task.
-//
-// When there is a gap in message sequence numbers - that most likely means some
-// old fields got deprecated. This is done to maintain binary compatibility.
-type CronTask struct {
-	// Authenticators contains a list of conditions that authenticate execution
-	// of this task.
-	// This is one of the main differences between the CronTask and Tx entities.
-	// CronTask is created interanlly and does not have to be signed. Because we
-	// use the same handlers as for the Tx to process a cron task, we must
-	// provide authentication method. This attribute contains all authentication
-	// conditions required for execution, that will be inserted into the context.
-	Authenticators []github_com_iov_one_weave.Condition `protobuf:"bytes,1,rep,name=authenticators,proto3,casttype=github.com/iov-one/weave.Condition" json:"authenticators,omitempty"`
-	// Use the same indexes for the messages as the Tx message.
-	//
-	// Types that are valid to be assigned to Sum:
-	//	*CronTask_BlogDeleteArticleMsg
-	Sum isCronTask_Sum `protobuf_oneof:"sum"`
-}
-
-func (m *CronTask) Reset()         { *m = CronTask{} }
-func (m *CronTask) String() string { return proto.CompactTextString(m) }
-func (*CronTask) ProtoMessage()    {}
-func (*CronTask) Descriptor() ([]byte, []int) {
-	return fileDescriptor_96adc38df3c83d28, []int{2}
-}
-func (m *CronTask) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *CronTask) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_CronTask.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *CronTask) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CronTask.Merge(m, src)
-}
-func (m *CronTask) XXX_Size() int {
-	return m.Size()
-}
-func (m *CronTask) XXX_DiscardUnknown() {
-	xxx_messageInfo_CronTask.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CronTask proto.InternalMessageInfo
-
-type isCronTask_Sum interface {
-	isCronTask_Sum()
-	MarshalTo([]byte) (int, error)
-	Size() int
-}
-
-type CronTask_BlogDeleteArticleMsg struct {
-	BlogDeleteArticleMsg *blog.DeleteArticleMsg `protobuf:"bytes,120,opt,name=blog_delete_article_msg,json=blogDeleteArticleMsg,proto3,oneof"`
-}
-
-func (*CronTask_BlogDeleteArticleMsg) isCronTask_Sum() {}
-
-func (m *CronTask) GetSum() isCronTask_Sum {
-	if m != nil {
-		return m.Sum
-	}
-	return nil
-}
-
-func (m *CronTask) GetAuthenticators() []github_com_iov_one_weave.Condition {
-	if m != nil {
-		return m.Authenticators
-	}
-	return nil
-}
-
-func (m *CronTask) GetBlogDeleteArticleMsg() *blog.DeleteArticleMsg {
-	if x, ok := m.GetSum().(*CronTask_BlogDeleteArticleMsg); ok {
-		return x.BlogDeleteArticleMsg
-	}
-	return nil
-}
-
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*CronTask) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _CronTask_OneofMarshaler, _CronTask_OneofUnmarshaler, _CronTask_OneofSizer, []interface{}{
-		(*CronTask_BlogDeleteArticleMsg)(nil),
-	}
-}
-
-func _CronTask_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*CronTask)
-	// sum
-	switch x := m.Sum.(type) {
-	case *CronTask_BlogDeleteArticleMsg:
-		_ = b.EncodeVarint(120<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.BlogDeleteArticleMsg); err != nil {
-			return err
-		}
-	case nil:
-	default:
-		return fmt.Errorf("CronTask.Sum has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _CronTask_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*CronTask)
-	switch tag {
-	case 120: // sum.blog_delete_article_msg
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(blog.DeleteArticleMsg)
-		err := b.DecodeMessage(msg)
-		m.Sum = &CronTask_BlogDeleteArticleMsg{msg}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _CronTask_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*CronTask)
-	// sum
-	switch x := m.Sum.(type) {
-	case *CronTask_BlogDeleteArticleMsg:
-		s := proto.Size(x.BlogDeleteArticleMsg)
-		n += 2 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
-}
-
 func init() {
 	proto.RegisterType((*Tx)(nil), "blog.Tx")
 	proto.RegisterType((*ExecuteBatchMsg)(nil), "blog.ExecuteBatchMsg")
 	proto.RegisterType((*ExecuteBatchMsg_Union)(nil), "blog.ExecuteBatchMsg.Union")
-	proto.RegisterType((*CronTask)(nil), "blog.CronTask")
 }
 
 func init() { proto.RegisterFile("cmd/blog/app/codec.proto", fileDescriptor_96adc38df3c83d28) }
 
 var fileDescriptor_96adc38df3c83d28 = []byte{
-	// 727 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x95, 0x41, 0x4f, 0xdb, 0x48,
-	0x14, 0xc7, 0x13, 0x12, 0x56, 0xd1, 0x00, 0x8b, 0x18, 0x58, 0x36, 0x64, 0x57, 0x21, 0xcb, 0x4a,
-	0x2b, 0xa4, 0x55, 0xc7, 0x2a, 0x5c, 0xda, 0xaa, 0x3d, 0x90, 0x00, 0x6a, 0x0f, 0x2d, 0x52, 0x42,
-	0x7a, 0xac, 0x35, 0xb1, 0x27, 0x93, 0x11, 0xb6, 0x27, 0xf2, 0xd8, 0x90, 0x7e, 0x8b, 0x7e, 0x88,
-	0x7e, 0x82, 0x9e, 0xfa, 0x11, 0x38, 0xd2, 0x5b, 0x4f, 0xa8, 0x82, 0x6f, 0xd1, 0x53, 0x35, 0x6f,
-	0x6c, 0xc7, 0x71, 0x0a, 0xaa, 0x7a, 0xec, 0x6d, 0xe6, 0xfd, 0xff, 0xef, 0x37, 0x2f, 0x6f, 0x9e,
-	0x27, 0xa8, 0xee, 0xf8, 0xae, 0x35, 0xf0, 0x24, 0xb7, 0xe8, 0x78, 0x6c, 0x39, 0xd2, 0x65, 0x0e,
-	0x19, 0x87, 0x32, 0x92, 0xb8, 0xaa, 0xa3, 0x0d, 0xc2, 0x45, 0x34, 0x8a, 0x07, 0xc4, 0x91, 0xbe,
-	0x25, 0xe4, 0xf9, 0x03, 0x19, 0x30, 0xeb, 0x82, 0xd1, 0x73, 0x66, 0xf9, 0x82, 0x87, 0x34, 0x12,
-	0x32, 0xc8, 0x67, 0x35, 0xfe, 0xbf, 0xd3, 0x3f, 0xb1, 0x1c, 0xaa, 0x46, 0x33, 0x66, 0xeb, 0x1e,
-	0xb3, 0x1f, 0x7b, 0x91, 0x50, 0x82, 0xff, 0x30, 0x5d, 0x09, 0xae, 0x66, 0xcc, 0x0f, 0xef, 0x31,
-	0x9f, 0x53, 0x4f, 0xb8, 0x34, 0x92, 0xe1, 0x6c, 0xca, 0x06, 0x97, 0x5c, 0xc2, 0xd2, 0xd2, 0xab,
-	0x24, 0x8a, 0x27, 0xa6, 0x43, 0x39, 0xe7, 0xce, 0xc7, 0x1a, 0x5a, 0x38, 0x9d, 0xe0, 0x7f, 0x50,
-	0x75, 0xc8, 0x98, 0xaa, 0x97, 0x5b, 0xe5, 0xdd, 0xa5, 0xbd, 0x15, 0xa2, 0x7f, 0x22, 0x39, 0x66,
-	0xec, 0x45, 0x30, 0x94, 0x5d, 0x90, 0xf0, 0x1e, 0x42, 0x4a, 0xf0, 0x80, 0x46, 0x71, 0xc8, 0x54,
-	0x7d, 0xa1, 0x55, 0xd9, 0x5d, 0xda, 0xc3, 0x44, 0x57, 0x4b, 0x7a, 0x91, 0xdb, 0x4b, 0xa5, 0x6e,
-	0xce, 0x85, 0x1b, 0xa8, 0x96, 0xfe, 0xfe, 0x7a, 0xb5, 0x55, 0xd9, 0x5d, 0xee, 0x66, 0x7b, 0xbc,
-	0x8f, 0x56, 0xf4, 0x29, 0xb6, 0x62, 0x81, 0x6b, 0xfb, 0x8a, 0xd7, 0xf7, 0xf3, 0x67, 0xf7, 0x58,
-	0xe0, 0xbe, 0x54, 0xfc, 0x79, 0xa9, 0xbb, 0xa4, 0xf7, 0xc9, 0x16, 0x1f, 0xa1, 0xf5, 0x14, 0x60,
-	0x3b, 0x21, 0xa3, 0x11, 0x83, 0xd4, 0x47, 0x90, 0xba, 0x4e, 0x52, 0x8d, 0x74, 0x40, 0x33, 0x80,
-	0xb5, 0x34, 0x9a, 0x05, 0x67, 0x30, 0xf1, 0xd8, 0x4d, 0x31, 0x8f, 0x8b, 0x98, 0x3e, 0x68, 0x05,
-	0x4c, 0x16, 0xc4, 0x7d, 0xb4, 0x35, 0xbd, 0x00, 0x9b, 0x8e, 0xc7, 0xde, 0x5b, 0xdb, 0x15, 0xc3,
-	0x21, 0xc0, 0x9e, 0x00, 0xac, 0x4e, 0xa6, 0x0e, 0x72, 0xa0, 0x1d, 0x87, 0x62, 0x38, 0x34, 0xc4,
-	0xcd, 0xa9, 0x94, 0x57, 0x70, 0x07, 0xad, 0xb1, 0x09, 0x73, 0xe2, 0x88, 0xd9, 0x03, 0x1a, 0x39,
-	0x23, 0xc0, 0x3d, 0x05, 0xdc, 0x1f, 0x44, 0xdf, 0x20, 0x39, 0x32, 0x72, 0x5b, 0xab, 0x86, 0xb5,
-	0xca, 0x66, 0x43, 0xf8, 0x0d, 0xfa, 0x3b, 0x9b, 0x6c, 0x3b, 0x1e, 0xf3, 0x90, 0xba, 0xcc, 0x56,
-	0xce, 0x88, 0xf9, 0x14, 0x78, 0x47, 0xc0, 0xfb, 0x8b, 0x64, 0x26, 0xd2, 0x37, 0xa6, 0x1e, 0x78,
-	0x0c, 0x75, 0x2b, 0x53, 0x8b, 0x22, 0x3e, 0x46, 0x1b, 0xba, 0x94, 0xf4, 0x16, 0x62, 0xc5, 0x42,
-	0xe0, 0xba, 0x49, 0x0f, 0xa1, 0x4e, 0xd3, 0xf1, 0xbe, 0x62, 0x61, 0xd2, 0x43, 0x1d, 0x9d, 0x09,
-	0x16, 0x39, 0xb0, 0xd6, 0x1c, 0x36, 0xcf, 0x69, 0x7b, 0x92, 0xcf, 0x71, 0x92, 0x20, 0x7e, 0x8d,
-	0x1a, 0x86, 0x33, 0xa2, 0x01, 0x4f, 0x38, 0xf2, 0x22, 0x48, 0xaa, 0x1a, 0x26, 0x97, 0x61, 0x68,
-	0x60, 0xd1, 0x89, 0x27, 0xda, 0x90, 0x5c, 0x06, 0x20, 0xe7, 0x14, 0x7c, 0x82, 0xfe, 0xcc, 0xd7,
-	0x47, 0xc3, 0x48, 0x38, 0x9e, 0x19, 0x17, 0x0e, 0xd0, 0xcd, 0x7c, 0x89, 0x07, 0x46, 0x36, 0xc8,
-	0x8d, 0x69, 0x95, 0xd3, 0x78, 0x06, 0x74, 0x99, 0xc7, 0x0a, 0xc0, 0x51, 0x1e, 0x78, 0x08, 0xfa,
-	0x3c, 0xb0, 0x18, 0xc7, 0x12, 0xfd, 0x6b, 0x2a, 0xa4, 0x81, 0xc3, 0xbc, 0x22, 0x37, 0xa2, 0xea,
-	0x0c, 0xe0, 0x02, 0xe0, 0xad, 0xa4, 0x5a, 0xf0, 0xce, 0xa0, 0x4e, 0xa9, 0x3a, 0x33, 0xc7, 0x34,
-	0xa1, 0xee, 0x3b, 0x1d, 0xed, 0x45, 0x54, 0x51, 0xb1, 0xbf, 0xf3, 0x7e, 0x01, 0xad, 0x16, 0x06,
-	0x11, 0x3f, 0x43, 0x35, 0x9f, 0x29, 0x45, 0x39, 0xbc, 0x25, 0x15, 0x98, 0xb0, 0xef, 0x4d, 0x2c,
-	0xe9, 0x07, 0x42, 0x06, 0xed, 0xea, 0xe5, 0xf5, 0x76, 0xa9, 0x9b, 0xa5, 0x34, 0x3e, 0x95, 0xd1,
-	0x22, 0x28, 0xbf, 0xc0, 0xeb, 0x90, 0xb6, 0xe9, 0x43, 0x19, 0xd5, 0x3a, 0xa1, 0x0c, 0x74, 0xf7,
-	0xf0, 0x2b, 0xf4, 0x3b, 0x8d, 0xa3, 0x11, 0x0b, 0x22, 0xe1, 0xc0, 0x87, 0x0f, 0x5d, 0x5a, 0x6e,
-	0xff, 0xf7, 0xf5, 0x7a, 0x7b, 0xe7, 0xae, 0x77, 0x9e, 0x74, 0x64, 0xe0, 0x0a, 0xfd, 0x15, 0x76,
-	0x0b, 0xd9, 0xf7, 0x0d, 0xd3, 0xe4, 0x67, 0x86, 0x29, 0x29, 0xba, 0x5d, 0xbf, 0xbc, 0x69, 0x96,
-	0xaf, 0x6e, 0x9a, 0xe5, 0x2f, 0x37, 0xcd, 0xf2, 0xbb, 0xdb, 0x66, 0xe9, 0xea, 0xb6, 0x59, 0xfa,
-	0x7c, 0xdb, 0x2c, 0x0d, 0x7e, 0x83, 0xff, 0x8d, 0xfd, 0x6f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x94,
-	0x8a, 0x55, 0x9e, 0x71, 0x07, 0x00, 0x00,
+	// 509 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x93, 0xcf, 0x6e, 0xd3, 0x4a,
+	0x14, 0x87, 0xed, 0xc4, 0xbd, 0xaa, 0x26, 0xb7, 0xaa, 0x3a, 0x05, 0xe4, 0x06, 0x64, 0x42, 0x57,
+	0x91, 0x10, 0x63, 0x91, 0x6c, 0x00, 0xc1, 0x82, 0x94, 0x20, 0x58, 0xb0, 0x71, 0xc8, 0x16, 0x6b,
+	0x62, 0x1f, 0x4f, 0x46, 0x8a, 0x3d, 0x96, 0x67, 0x1c, 0xc2, 0x5b, 0xf0, 0x10, 0xbc, 0x06, 0xfb,
+	0x2e, 0xcb, 0x8e, 0x15, 0x42, 0xc9, 0x8b, 0x20, 0x8f, 0x6b, 0x27, 0x8e, 0xa0, 0x62, 0xcd, 0xce,
+	0x73, 0xbe, 0xdf, 0xf9, 0xe6, 0x8f, 0x8e, 0x91, 0x1d, 0xc4, 0xa1, 0x3b, 0x5b, 0x08, 0xe6, 0xd2,
+	0x34, 0x75, 0x03, 0x11, 0x42, 0x40, 0xd2, 0x4c, 0x28, 0x81, 0xad, 0xa2, 0xda, 0x25, 0x8c, 0xab,
+	0x79, 0x3e, 0x23, 0x81, 0x88, 0x5d, 0x2e, 0x96, 0x8f, 0x44, 0x02, 0xee, 0x47, 0xa0, 0x4b, 0x70,
+	0x63, 0xce, 0x32, 0xaa, 0xb8, 0x48, 0x76, 0xbb, 0xba, 0x0f, 0xff, 0x98, 0x5f, 0xb9, 0x01, 0x95,
+	0xf3, 0x46, 0xd8, 0xbd, 0x21, 0x1c, 0xe7, 0x0b, 0xc5, 0x25, 0x67, 0x7f, 0x6d, 0x97, 0x9c, 0xc9,
+	0x46, 0xf8, 0xf1, 0x0d, 0xe1, 0x25, 0x5d, 0xf0, 0x90, 0x2a, 0x91, 0x35, 0x5b, 0x6e, 0x31, 0xc1,
+	0x84, 0xfe, 0x74, 0x8b, 0xaf, 0xb2, 0x7a, 0xfe, 0xd5, 0x42, 0xad, 0xf7, 0x2b, 0xfc, 0x00, 0x59,
+	0x11, 0x80, 0xb4, 0xcd, 0x9e, 0xd9, 0xef, 0x0c, 0x8e, 0x48, 0x71, 0x1d, 0xf2, 0x1a, 0xe0, 0x6d,
+	0x12, 0x09, 0x4f, 0x23, 0x3c, 0x40, 0x48, 0x72, 0x96, 0x50, 0x95, 0x67, 0x20, 0xed, 0x56, 0xaf,
+	0xdd, 0xef, 0x0c, 0x30, 0x29, 0x4e, 0x46, 0x26, 0x2a, 0x9c, 0x54, 0xc8, 0xdb, 0x49, 0xe1, 0x2e,
+	0x3a, 0xac, 0xee, 0x6a, 0x5b, 0xbd, 0x76, 0xff, 0x7f, 0xaf, 0x5e, 0xe3, 0x21, 0x3a, 0x2a, 0x76,
+	0xf1, 0x25, 0x24, 0xa1, 0x1f, 0x4b, 0x66, 0x0f, 0x77, 0xf7, 0x9e, 0x40, 0x12, 0xbe, 0x93, 0xec,
+	0x8d, 0xe1, 0x75, 0x8a, 0xf5, 0xf5, 0x12, 0x8f, 0xd1, 0x69, 0x25, 0xf0, 0x83, 0x0c, 0xa8, 0x02,
+	0xdd, 0xfa, 0x44, 0xb7, 0x9e, 0x92, 0x8a, 0x91, 0x0b, 0xcd, 0x4a, 0xc1, 0x49, 0x55, 0xad, 0x8b,
+	0x0d, 0x4d, 0x9e, 0x86, 0x95, 0xe6, 0xe9, 0xbe, 0x66, 0xaa, 0xd9, 0x9e, 0xa6, 0x2e, 0xe2, 0x29,
+	0x3a, 0xdb, 0x3e, 0xb6, 0x4f, 0xd3, 0x74, 0xf1, 0xc9, 0x0f, 0x79, 0x14, 0x69, 0xd9, 0x33, 0x2d,
+	0xb3, 0xc9, 0x36, 0x41, 0x5e, 0x16, 0x89, 0x57, 0x3c, 0x8a, 0x4a, 0xe3, 0x9d, 0x2d, 0xda, 0x25,
+	0xf8, 0x02, 0x9d, 0xc0, 0x0a, 0x82, 0x5c, 0x81, 0x3f, 0xa3, 0x2a, 0x98, 0x6b, 0xdd, 0x73, 0xad,
+	0xbb, 0x4d, 0x8a, 0xc9, 0x25, 0xe3, 0x12, 0x8f, 0x0a, 0x5a, 0xba, 0x8e, 0xa1, 0x59, 0xc2, 0x1f,
+	0xd0, 0xbd, 0x7a, 0x8a, 0xfd, 0x3c, 0x65, 0x19, 0x0d, 0xc1, 0x97, 0xc1, 0x1c, 0x62, 0xaa, 0x7d,
+	0x63, 0xed, 0xbb, 0x4b, 0xea, 0x10, 0x99, 0x96, 0xa1, 0x89, 0xce, 0x94, 0xd6, 0xb3, 0x9a, 0xee,
+	0xc3, 0xd1, 0x01, 0x6a, 0xcb, 0x3c, 0x3e, 0xff, 0xd2, 0x42, 0xc7, 0x7b, 0xa7, 0xc1, 0x2f, 0xd0,
+	0x61, 0x0c, 0x52, 0x52, 0xa6, 0x07, 0xaa, 0xad, 0xb7, 0xf9, 0xdd, 0xb1, 0xc9, 0x34, 0xe1, 0x22,
+	0x19, 0x59, 0x97, 0x3f, 0xee, 0x1b, 0x5e, 0xdd, 0xd2, 0xfd, 0x66, 0xa2, 0x03, 0x4d, 0xfe, 0x81,
+	0x11, 0xb9, 0x7e, 0xa6, 0x91, 0x7d, 0xb9, 0x76, 0xcc, 0xab, 0xb5, 0x63, 0xfe, 0x5c, 0x3b, 0xe6,
+	0xe7, 0x8d, 0x63, 0x5c, 0x6d, 0x1c, 0xe3, 0xfb, 0xc6, 0x31, 0x66, 0xff, 0xe9, 0xff, 0x70, 0xf8,
+	0x2b, 0x00, 0x00, 0xff, 0xff, 0x96, 0x2c, 0x3b, 0x72, 0xad, 0x04, 0x00, 0x00,
 }
 
 func (m *Tx) Marshal() (dAtA []byte, err error) {
@@ -1111,102 +766,6 @@ func (m *Tx_MigrationUpgradeSchemaMsg) MarshalTo(dAtA []byte) (int, error) {
 	}
 	return i, nil
 }
-func (m *Tx_BlogCreateUserMsg) MarshalTo(dAtA []byte) (int, error) {
-	i := 0
-	if m.BlogCreateUserMsg != nil {
-		dAtA[i] = 0xa2
-		i++
-		dAtA[i] = 0x6
-		i++
-		i = encodeVarintCodec(dAtA, i, uint64(m.BlogCreateUserMsg.Size()))
-		n9, err := m.BlogCreateUserMsg.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n9
-	}
-	return i, nil
-}
-func (m *Tx_BlogCreateBlogMsg) MarshalTo(dAtA []byte) (int, error) {
-	i := 0
-	if m.BlogCreateBlogMsg != nil {
-		dAtA[i] = 0xaa
-		i++
-		dAtA[i] = 0x6
-		i++
-		i = encodeVarintCodec(dAtA, i, uint64(m.BlogCreateBlogMsg.Size()))
-		n10, err := m.BlogCreateBlogMsg.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n10
-	}
-	return i, nil
-}
-func (m *Tx_BlogChangeBlogOwnerMsg) MarshalTo(dAtA []byte) (int, error) {
-	i := 0
-	if m.BlogChangeBlogOwnerMsg != nil {
-		dAtA[i] = 0xb2
-		i++
-		dAtA[i] = 0x6
-		i++
-		i = encodeVarintCodec(dAtA, i, uint64(m.BlogChangeBlogOwnerMsg.Size()))
-		n11, err := m.BlogChangeBlogOwnerMsg.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n11
-	}
-	return i, nil
-}
-func (m *Tx_BlogCreateArticleMsg) MarshalTo(dAtA []byte) (int, error) {
-	i := 0
-	if m.BlogCreateArticleMsg != nil {
-		dAtA[i] = 0xba
-		i++
-		dAtA[i] = 0x6
-		i++
-		i = encodeVarintCodec(dAtA, i, uint64(m.BlogCreateArticleMsg.Size()))
-		n12, err := m.BlogCreateArticleMsg.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n12
-	}
-	return i, nil
-}
-func (m *Tx_BlogDeleteArticleMsg) MarshalTo(dAtA []byte) (int, error) {
-	i := 0
-	if m.BlogDeleteArticleMsg != nil {
-		dAtA[i] = 0xc2
-		i++
-		dAtA[i] = 0x6
-		i++
-		i = encodeVarintCodec(dAtA, i, uint64(m.BlogDeleteArticleMsg.Size()))
-		n13, err := m.BlogDeleteArticleMsg.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n13
-	}
-	return i, nil
-}
-func (m *Tx_BlogCancelDeleteArticleTaskMsg) MarshalTo(dAtA []byte) (int, error) {
-	i := 0
-	if m.BlogCancelDeleteArticleTaskMsg != nil {
-		dAtA[i] = 0xca
-		i++
-		dAtA[i] = 0x6
-		i++
-		i = encodeVarintCodec(dAtA, i, uint64(m.BlogCancelDeleteArticleTaskMsg.Size()))
-		n14, err := m.BlogCancelDeleteArticleTaskMsg.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n14
-	}
-	return i, nil
-}
 func (m *ExecuteBatchMsg) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1253,11 +812,11 @@ func (m *ExecuteBatchMsg_Union) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	if m.Sum != nil {
-		nn15, err := m.Sum.MarshalTo(dAtA[i:])
+		nn9, err := m.Sum.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += nn15
+		i += nn9
 	}
 	return i, nil
 }
@@ -1270,11 +829,11 @@ func (m *ExecuteBatchMsg_Union_CashSendMsg) MarshalTo(dAtA []byte) (int, error) 
 		dAtA[i] = 0x3
 		i++
 		i = encodeVarintCodec(dAtA, i, uint64(m.CashSendMsg.Size()))
-		n16, err := m.CashSendMsg.MarshalTo(dAtA[i:])
+		n10, err := m.CashSendMsg.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n16
+		i += n10
 	}
 	return i, nil
 }
@@ -1286,11 +845,11 @@ func (m *ExecuteBatchMsg_Union_MultisigCreateMsg) MarshalTo(dAtA []byte) (int, e
 		dAtA[i] = 0x3
 		i++
 		i = encodeVarintCodec(dAtA, i, uint64(m.MultisigCreateMsg.Size()))
-		n17, err := m.MultisigCreateMsg.MarshalTo(dAtA[i:])
+		n11, err := m.MultisigCreateMsg.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n17
+		i += n11
 	}
 	return i, nil
 }
@@ -1302,60 +861,11 @@ func (m *ExecuteBatchMsg_Union_MultisigUpdateMsg) MarshalTo(dAtA []byte) (int, e
 		dAtA[i] = 0x3
 		i++
 		i = encodeVarintCodec(dAtA, i, uint64(m.MultisigUpdateMsg.Size()))
-		n18, err := m.MultisigUpdateMsg.MarshalTo(dAtA[i:])
+		n12, err := m.MultisigUpdateMsg.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n18
-	}
-	return i, nil
-}
-func (m *CronTask) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *CronTask) MarshalTo(dAtA []byte) (int, error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if len(m.Authenticators) > 0 {
-		for _, b := range m.Authenticators {
-			dAtA[i] = 0xa
-			i++
-			i = encodeVarintCodec(dAtA, i, uint64(len(b)))
-			i += copy(dAtA[i:], b)
-		}
-	}
-	if m.Sum != nil {
-		nn19, err := m.Sum.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += nn19
-	}
-	return i, nil
-}
-
-func (m *CronTask_BlogDeleteArticleMsg) MarshalTo(dAtA []byte) (int, error) {
-	i := 0
-	if m.BlogDeleteArticleMsg != nil {
-		dAtA[i] = 0xc2
-		i++
-		dAtA[i] = 0x7
-		i++
-		i = encodeVarintCodec(dAtA, i, uint64(m.BlogDeleteArticleMsg.Size()))
-		n20, err := m.BlogDeleteArticleMsg.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n20
+		i += n12
 	}
 	return i, nil
 }
@@ -1468,78 +978,6 @@ func (m *Tx_MigrationUpgradeSchemaMsg) Size() (n int) {
 	}
 	return n
 }
-func (m *Tx_BlogCreateUserMsg) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.BlogCreateUserMsg != nil {
-		l = m.BlogCreateUserMsg.Size()
-		n += 2 + l + sovCodec(uint64(l))
-	}
-	return n
-}
-func (m *Tx_BlogCreateBlogMsg) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.BlogCreateBlogMsg != nil {
-		l = m.BlogCreateBlogMsg.Size()
-		n += 2 + l + sovCodec(uint64(l))
-	}
-	return n
-}
-func (m *Tx_BlogChangeBlogOwnerMsg) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.BlogChangeBlogOwnerMsg != nil {
-		l = m.BlogChangeBlogOwnerMsg.Size()
-		n += 2 + l + sovCodec(uint64(l))
-	}
-	return n
-}
-func (m *Tx_BlogCreateArticleMsg) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.BlogCreateArticleMsg != nil {
-		l = m.BlogCreateArticleMsg.Size()
-		n += 2 + l + sovCodec(uint64(l))
-	}
-	return n
-}
-func (m *Tx_BlogDeleteArticleMsg) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.BlogDeleteArticleMsg != nil {
-		l = m.BlogDeleteArticleMsg.Size()
-		n += 2 + l + sovCodec(uint64(l))
-	}
-	return n
-}
-func (m *Tx_BlogCancelDeleteArticleTaskMsg) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.BlogCancelDeleteArticleTaskMsg != nil {
-		l = m.BlogCancelDeleteArticleTaskMsg.Size()
-		n += 2 + l + sovCodec(uint64(l))
-	}
-	return n
-}
 func (m *ExecuteBatchMsg) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1599,36 +1037,6 @@ func (m *ExecuteBatchMsg_Union_MultisigUpdateMsg) Size() (n int) {
 	_ = l
 	if m.MultisigUpdateMsg != nil {
 		l = m.MultisigUpdateMsg.Size()
-		n += 2 + l + sovCodec(uint64(l))
-	}
-	return n
-}
-func (m *CronTask) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Authenticators) > 0 {
-		for _, b := range m.Authenticators {
-			l = len(b)
-			n += 1 + l + sovCodec(uint64(l))
-		}
-	}
-	if m.Sum != nil {
-		n += m.Sum.Size()
-	}
-	return n
-}
-
-func (m *CronTask_BlogDeleteArticleMsg) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.BlogDeleteArticleMsg != nil {
-		l = m.BlogDeleteArticleMsg.Size()
 		n += 2 + l + sovCodec(uint64(l))
 	}
 	return n
@@ -1988,216 +1396,6 @@ func (m *Tx) Unmarshal(dAtA []byte) error {
 			}
 			m.Sum = &Tx_MigrationUpgradeSchemaMsg{v}
 			iNdEx = postIndex
-		case 100:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlogCreateUserMsg", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &blog.CreateUserMsg{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Sum = &Tx_BlogCreateUserMsg{v}
-			iNdEx = postIndex
-		case 101:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlogCreateBlogMsg", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &blog.CreateBlogMsg{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Sum = &Tx_BlogCreateBlogMsg{v}
-			iNdEx = postIndex
-		case 102:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlogChangeBlogOwnerMsg", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &blog.ChangeBlogOwnerMsg{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Sum = &Tx_BlogChangeBlogOwnerMsg{v}
-			iNdEx = postIndex
-		case 103:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlogCreateArticleMsg", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &blog.CreateArticleMsg{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Sum = &Tx_BlogCreateArticleMsg{v}
-			iNdEx = postIndex
-		case 104:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlogDeleteArticleMsg", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &blog.DeleteArticleMsg{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Sum = &Tx_BlogDeleteArticleMsg{v}
-			iNdEx = postIndex
-		case 105:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlogCancelDeleteArticleTaskMsg", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &blog.CancelDeleteArticleTaskMsg{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Sum = &Tx_BlogCancelDeleteArticleTaskMsg{v}
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipCodec(dAtA[iNdEx:])
@@ -2442,126 +1640,6 @@ func (m *ExecuteBatchMsg_Union) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			m.Sum = &ExecuteBatchMsg_Union_MultisigUpdateMsg{v}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipCodec(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *CronTask) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowCodec
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: CronTask: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CronTask: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Authenticators", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Authenticators = append(m.Authenticators, make([]byte, postIndex-iNdEx))
-			copy(m.Authenticators[len(m.Authenticators)-1], dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 120:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BlogDeleteArticleMsg", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCodec
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthCodec
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthCodec
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &blog.DeleteArticleMsg{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Sum = &CronTask_BlogDeleteArticleMsg{v}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
