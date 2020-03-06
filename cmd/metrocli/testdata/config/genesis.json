@@ -21,11 +21,11 @@
         ]
       }
     ],
-		"currencies": [
-			{
-				"ticker": "BLOG",
-				"name":   "Main token of this chain"
-			}
+    "currencies": [
+      {
+        "ticker": "BLOG",
+        "name": "Main token of this chain"
+      }
     ],
     "multisig": [],
     "update_validators": {
@@ -33,23 +33,44 @@
         "E28AE9A6EB94FC88B73EB7CBD6B87BF93EB9BEF0"
       ]
     },
-		"conf": {
-			"cash": {
-				"collector_address": "seq:dist/revenue/1",
-				"minimal_fee": "0 BLOG"
-			},
-			"migration": {
-				"admin": "E28AE9A6EB94FC88B73EB7CBD6B87BF93EB9BEF0"
-			}
-		},
+    "conf": {
+      "cash": {
+        "collector_address": "seq:dist/revenue/1",
+        "minimal_fee": "0 BLOG"
+      },
+      "migration": {
+        "admin": "E28AE9A6EB94FC88B73EB7CBD6B87BF93EB9BEF0"
+      }
+    },
     "initialize_schema": [
-			{"ver": 1, "pkg": "migration"},
-			{"ver": 1, "pkg": "cash"},
-			{"ver": 1, "pkg": "multisig"},
-			{"ver": 1, "pkg": "sigs"},
-      {"ver": 1, "pkg": "utils"},
-			{"ver": 1, "pkg": "multisig"},
-			{"ver": 1, "pkg": "validators"}      
+      {
+        "ver": 1,
+        "pkg": "migration"
+      },
+      {
+        "ver": 1,
+        "pkg": "cash"
+      },
+      {
+        "ver": 1,
+        "pkg": "multisig"
+      },
+      {
+        "ver": 1,
+        "pkg": "sigs"
+      },
+      {
+        "ver": 1,
+        "pkg": "utils"
+      },
+      {
+        "ver": 1,
+        "pkg": "multisig"
+      },
+      {
+        "ver": 1,
+        "pkg": "validators"
+      }
     ]
   },
   "chain_id": "clitest-chain",

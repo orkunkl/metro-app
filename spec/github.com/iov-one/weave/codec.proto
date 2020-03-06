@@ -10,24 +10,24 @@ import "gogoproto/gogo.proto";
 //
 //   weave.Metadata metadata = 1;
 message Metadata {
-  uint32 schema = 1;
+    uint32 schema = 1;
 }
 
 // ValidatorUpdates represents latest validator state, currently used to validate SetValidatorMsg transactions.
 message ValidatorUpdates {
-  repeated weave.ValidatorUpdate validator_updates = 1 [(gogoproto.nullable) = false];
+    repeated weave.ValidatorUpdate validator_updates = 1 [(gogoproto.nullable) = false];
 }
 
 // ValidatorUpdate represents an update to validator set.
 message ValidatorUpdate {
-  PubKey pub_key = 1 [(gogoproto.nullable) = false];
-  int64 power = 2;
+    PubKey pub_key = 1 [(gogoproto.nullable) = false];
+    int64 power = 2;
 }
 
 // PubKey represents a validator public key.
 message PubKey {
-  string type = 1;
-  bytes data = 2;
+    string type = 1;
+    bytes data = 2;
 }
 
 option go_package = "github.com/iov-one/weave";
